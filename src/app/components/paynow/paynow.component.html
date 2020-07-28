@@ -1,0 +1,114 @@
+
+<ion-header>
+  <ion-button color="light" (click)="closeModal()">
+    <ion-icon size="large" name="close"></ion-icon>
+  </ion-button>
+</ion-header>
+
+<ion-content>
+
+  <div class="ion-text-center">
+    <img src="../../../assets/paylogo.png" width="100" height="100" alt="">
+
+  </div>
+
+  <!--  form one -->
+  <div *ngIf="showform1" class="center ">
+    <form [formGroup]="paymentForm" name="form" (ngSubmit)="payNow()">
+      <!-- <img class="ion-padding" src="assets/icon/logo.jpg"> -->
+
+      <div>
+        <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+      </div>
+
+      <ion-item class="ion-margin-bottom" color="light">
+        <ion-label color="dark" position="floating">CUSTOMER NAME</ion-label>
+        <ion-input readonly type="text"  name="gtpay_cust_name" clearInput formControlName="customer"
+          required="true"></ion-input>
+        <ion-icon name="person" slot="end"></ion-icon>
+      </ion-item>
+
+
+      <ion-item color="light" class="">
+        <ion-label position="floating">AMOUNT</ion-label>
+        <ion-input  type="number" name="gtpay_tranx_amt" formControlName="amount"
+          clearInput required="true">
+        </ion-input>
+        <!-- <ion-icon  name="cash" slot="end"></ion-icon>  -->
+        <h3 slot="end">₦</h3>
+      </ion-item>
+
+      <ion-item color="light" class="">
+        <ion-label position="floating"> ADDITIONAL INFORMATION </ion-label>
+        <ion-input class="" type="text" name="gtpay_tranx_memo" formControlName="memo"
+          clearInput>
+        </ion-input>
+        <ion-icon name="pencil" slot="end"></ion-icon>
+      </ion-item>
+      <div class="ion-text-center ion-padding ">
+        <ion-button   type="submit" color="success">PAY</ion-button>
+      </div>
+      <br>
+    </form>
+  </div>
+
+
+
+  <!-- https://gtweb2.gtbank.com/orangelocker/gtpaym/tranx.aspx -->
+  <!-- https://ibank.gtbank.com/GTPay_/Tranx.aspx -->
+
+  <!--  form two -->
+  <div *ngIf="showform2" class="center">
+    <form class="payment" ngNoForm (ngSubmit)="confirmPay()" name="submit2gtpay_form" method="POST" 
+    action="https://ibank.gtbank.com/GTPay/Tranx.aspx">
+
+      <div>
+        <ion-progress-bar *ngIf="loading" type="indeterminate"></ion-progress-bar>
+      </div>
+
+      <ion-item class="ion-margin-bottom ion-text-center" color="light">
+        <div>{{transService.gtpay_cust_name}} </div>
+        <ion-icon name="person" slot="end"></ion-icon>
+      </ion-item>
+
+      <ion-item color="light" class="">
+        <div>{{userAmount}} </div>
+        <h3 slot="end">₦</h3>
+      </ion-item>
+
+      <ion-item color="light" class="">
+        <div > {{transService.gtpay_tranx_memo}} </div>
+       
+        <ion-icon name="pencil" slot="end"></ion-icon>
+      </ion-item>
+      
+      <div class="ion-text-center ion-padding ">
+        <ion-button size="large" (click)="confirmPay()"  type="submit" color="success">
+          <ion-spinner *ngIf="loading"></ion-spinner>
+          <div *ngIf="!loading">CONFIRM</div>
+        </ion-button>
+      </div>
+      <br>
+      <input readonly type="hidden" name="gtpay_mert_id" [value]="transService.gtpay_mert_id" />
+      <br>
+      <input type="hidden" name="gtpay_tranx_id" [value]="transService.gtpay_tranx_id" />
+      <br>
+      <input readonly type="hidden" name="gtpay_tranx_amt" [value]="transService.gtpay_tranx_amt" />
+      <br>
+      <input readonly type="hidden" name="gtpay_tranx_curr" [value]="transService.gtpay_tranx_curr" />
+      <br>
+      <input readonly type="hidden" name="gtpay_cust_id" [value]="transService.gtpay_cust_id" />
+      <br>
+      <input readonly type="hidden" name="gtpay_cust_name" [value]="transService.gtpay_cust_name" />
+      <br>
+      <input readonly type="hidden" name="gtpay_tranx_memo" [value]="transService.gtpay_tranx_memo" />
+      <br>
+      <input readonly type="hidden" name="gtpay_tranx_noti_url" [value]="transService.gtpay_tranx_noti_url" />
+      <br>
+      <input readonly type="hidden" name="gtpay_hash" [value]="transService.gtpay_hash" />
+    </form>
+  </div>
+
+
+
+  </ion-content>

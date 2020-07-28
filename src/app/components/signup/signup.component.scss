@@ -1,0 +1,57 @@
+
+.form{
+    margin-top: 20%;
+   
+     }
+     ion-input {
+       width: 100%;
+     
+      
+     }
+     .error{
+       color: red;
+       text-align: center;
+     }
+    
+ // form{
+ //   justify-content: center;
+ //     padding-top: 5%; 
+ //  }
+ 
+ //  image
+ 
+ 
+ /* resize images */
+ .container img {
+   width: 200%;
+   height: auto;
+ }
+ 
+ // new login
+ 
+ .container {
+  
+   padding-top: 10%;
+   padding-bottom: 10%;
+ 
+ }
+ 
+ .center{
+   display: flex;
+   justify-content: center;
+   border: 2px blue($color: #000000);
+ }
+ 
+ .align-center{
+   text-align: center;
+ }
+ .myButton{
+   padding:10px;
+   display: flex;
+   justify-content: center;
+ }
+ 
+ .input{
+   margin: auto;
+   padding:15px
+ }

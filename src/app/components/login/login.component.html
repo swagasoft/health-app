@@ -1,0 +1,55 @@
+<!-- <app-navbar></app-navbar> -->
+<ion-content>
+
+  
+  <div class="ion-text-center">
+       
+        
+  </div>
+  <div class="center ">
+    <form class="form" #loginForm="ngForm" name="form" (keydown.enter)="loginForm.valid && login()"
+      (submit)="loginForm.valid && login()">
+      <!-- <img class="ion-padding" src="assets/icon/logo.jpg"> -->
+    
+
+      <div *ngIf="loading">
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </div>
+
+      <ion-item class="ion-margin-bottom" color="light">
+        <ion-label color="dark" position="floating">Email</ion-label>
+        <ion-input type="email" #email name="email" clearInput [(ngModel)]="model.email" 
+           required="true"></ion-input>
+          <ion-icon name="mail" slot="end"></ion-icon>
+      </ion-item>
+
+
+      <ion-item color="light" class="">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input class="" type="password" input #password name="password" minlength="6" [(ngModel)]="model.password"
+        clearInput required="true">
+        </ion-input>
+        <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+          size="large" name="eye" slot="end"></ion-icon> 
+        
+      </ion-item>
+      
+
+
+      <div class="myButton md-button " #submitBtn>
+        <ion-button  [disabled]="loading || !loginForm.valid"
+         type="submit" color="success"> 
+         <ion-spinner *ngIf="loading" class="ion-padding"></ion-spinner>
+         <div *ngIf="!loading">LOGIN</div></ion-button>
+      </div>
+      
+      <div class="ion-text-center">
+        <ion-chip  (click)="signup()" outline> <h6>register</h6></ion-chip>
+        <ion-chip   outline> <h6>lost password</h6></ion-chip>
+      </div>
+    </form>
+  </div>
+
+
+
+</ion-content>

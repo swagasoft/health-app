@@ -1,0 +1,60 @@
+
+<ion-header>
+  <ion-button color="light" (click)="closeModal()">
+    <ion-icon color="danger" size="large" name="close"></ion-icon>
+  </ion-button>
+</ion-header>
+
+<ion-content>
+
+
+  
+  <div  class="center ">
+    <!-- <ion-card *ngIf="productProps.image">
+      <img [src]="safeImage">
+    </ion-card> -->
+    <form class="form" #productForm="ngForm" name="form" (keydown.enter)="productForm.valid && submitProduct()"
+      (submit)="productForm.valid && submitProduct()">
+
+      <div *ngIf="loading">
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </div>
+
+      <ion-item class="ion-margin-bottom" color="light">
+        <ion-label color="dark" position="floating">product name</ion-label>
+        <ion-input type="text" #name name="name" clearInput [(ngModel)]="productProps.name" 
+          required="true"></ion-input>
+          <ion-icon name="information" slot="end"></ion-icon>
+      </ion-item>
+
+      <ion-item color="light" class="ion-text-center">
+        <div>
+            <small class="ion-margin">product image</small>
+              <ion-input #icon type="file" (change)="selectImage($event)" name="icon"
+                  required></ion-input>
+              </div>
+            </ion-item>
+
+            <ion-item class="ion-margin-bottom" color="light">
+              <ion-label color="dark" position="floating">description</ion-label>
+              <ion-input type="text" #description name="description" clearInput [(ngModel)]="productProps.description" 
+                required="true"></ion-input>
+                <ion-icon name="film" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item class="ion-margin-bottom" color="light">
+              <ion-label color="dark" position="floating">price</ion-label>
+              <ion-input type="number" #price name="price" clearInput [(ngModel)]="productProps.price" 
+                required="true"></ion-input>
+                <ion-icon name="cash" slot="end"></ion-icon>
+            </ion-item>
+
+
+      <div class="myButton " #submitBtn>
+        <ion-button mat-raised-button [disabled]="loading" type="submit" color="success">SUBMIT</ion-button>
+      </div>
+    </form>
+  </div>
+
+
+</ion-content>

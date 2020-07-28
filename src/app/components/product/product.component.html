@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="light">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="row d-flex justify-content-center font-weight-bold">
+      PRODUCTS
+    </div>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content class="ion-padding">
+
+
+  <ion-grid *ngFor="let item of products; index as i">
+    <ion-row >
+      <ion-col >
+        <ion-item color="light">
+          <div class="bold-text ion-text-wrap">{{item.name}} </div>
+          <ion-chip  class="ion-padding" outline>{{item.price | currency:'#'}} </ion-chip>
+
+            <ion-button><ion-icon name="add"></ion-icon></ion-button>
+        <input type="number" style="width: 50px;">
+        <ion-button><ion-icon name="remove"></ion-icon></ion-button>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label class="ion-text-left">{{item.description}} </ion-label>
+          <img slot="end" [src]=" 'http://'+item.image_url" alt="product1_image" width="50" height="50">
+          <ion-icon slot="end" *ngIf="userService.getUserRole() =='ADMIN' "  color="danger" name="trash"></ion-icon>
+        </ion-item>
+   
+      </ion-col>
+    
+
+    </ion-row>
+  </ion-grid>
+  
+
+  <!-- <ion-list class="ion-margin-top" *ngFor="let item of products; index as i">
+    <ion-item color="light">
+    <ion-thumbnail slot="end">
+    <img [src]=" 'http://'+item.image_url" alt="product1_image">
+    </ion-thumbnail>
+    <ion-icon *ngIf="userService.getUserRole() =='ADMIN' "  color="danger" name="trash"></ion-icon>
+    <ion-label>
+    <p class="bold-text ion-text-wrap">{{item.name}} </p>
+    <ion-chip> <p>{{item.price | currency:'#'}}</p> </ion-chip>
+    <p>{{item.description}} </p>
+    </ion-label>
+    <ion-button><ion-icon name="add"></ion-icon></ion-button>
+    <input type="number" style="width: 50px;">
+    <ion-button><ion-icon name="remove"></ion-icon></ion-button>
+    </ion-item>
+    </ion-list> -->
+
+
+    
+
+
+
+
+ 
+    <ion-fab *ngIf="userService.getUserRole() =='ADMIN' "
+    vertical="bottom" horizontal="end" slot="fixed">
+   <ion-fab-button (click)="addProduct()"   color="primary">
+     <ion-icon  name="add"></ion-icon>
+   </ion-fab-button>
+ </ion-fab>
+</ion-content>

@@ -1,0 +1,71 @@
+
+
+<ion-header>
+  <ion-button color="light" (click)="closeModal()">
+    <ion-icon size="large" name="close"></ion-icon>
+  </ion-button>
+</ion-header>
+<ion-content>
+
+  
+  <div class="ion-text-center">
+       
+        
+  </div>
+  <div class="center ">
+    <form class="form" #loginForm="ngForm" name="form" (keydown.enter)="loginForm && signUp()"
+      (submit)="loginForm && signUp()">
+      <!-- <img class="ion-padding" src="assets/icon/logo.jpg"> -->
+    
+
+      <div *ngIf="loading">
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </div>
+
+      <ion-item class="ion-margin-bottom" color="light">
+        <ion-label color="dark" position="floating">Email</ion-label>
+        <ion-input type="email" #email name="email" clearInput [(ngModel)]="model.email" 
+           required="true"></ion-input>
+          <ion-icon name="mail" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item class="ion-margin-bottom" color="light">
+        <ion-label color="dark" position="floating">Username</ion-label>
+        <ion-input type="text" #username name="username" clearInput [(ngModel)]="model.username" 
+           required="true"></ion-input>
+          <ion-icon name="person" slot="end"></ion-icon>
+      </ion-item>
+
+
+      <ion-item color="light" class="">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input class="" type="password" input #password name="password" minlength="6" [(ngModel)]="model.password"
+        clearInput required="true">
+        </ion-input>
+        <ion-icon (click)="password.type=password.type=='password'?'text':'password'" 
+          size="large" name="eye" slot="end"></ion-icon> 
+      </ion-item>
+
+      <ion-item color="light" class="">
+        <ion-label position="floating">confirm password</ion-label>
+        <ion-input class="" type="password" input #conf_password 
+        name="conf_password" minlength="6" [(ngModel)]="model.conf_password"
+        clearInput required="true">
+        </ion-input>
+        <ion-icon (click)="conf_password.type=password.type=='password'?'text':'password'" 
+          size="large" name="eye" slot="end"></ion-icon> 
+      </ion-item>
+      <div class="error">
+
+      </div>
+      
+
+
+      <div class="myButton md-button " #submitBtn>
+        <ion-button  [disabled]="loading " type="submit" color="success">REGISTER</ion-button>
+      </div>
+    </form>
+  </div>
+
+
+
+</ion-content>
